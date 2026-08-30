@@ -73,7 +73,7 @@ local emoteData = {
 
 -- Lista de Ações para o menu Interagir
 local interactData = {
-    {Name = "Item Interação", AnimID = "99414136014979"},
+    {Name = "sex1", AnimID = "99414136014979"},
     {Name = "Ação 2"},
     {Name = "Ação 3"},
     {Name = "Ação 4"}
@@ -428,13 +428,13 @@ for _, data in ipairs(interactData) do
     btn.TextScaled = true
     
     btn.MouseButton1Click:Connect(function()
-        if data.Name == "Item Interação" then
-            if player.Backpack:FindFirstChild("Item Interação") or (player.Character and player.Character:FindFirstChild("Item Interação")) then
+        if data.Name == "sex1" then
+            if player.Backpack:FindFirstChild("sex1") or (player.Character and player.Character:FindFirstChild("sex1")) then
                 return
             end
 
             local tool = Instance.new("Tool")
-            tool.Name = "Item Interação"
+            tool.Name = "sex1"
             tool.RequiresHandle = false
             tool.Parent = player.Backpack
 
@@ -464,7 +464,7 @@ for _, data in ipairs(interactData) do
                                 currentInteractTrack:Play()
                             end
 
-                            -- Inicia o Loop de movimento invertido (-90 graus para o outro lado)
+                            -- Inicia o Loop de movimento ajustado (distância de vai e volta menor: 0.4 em vez de 0.8)
                             interactLoop = RunService.Heartbeat:Connect(function()
                                 -- Verifica se ambos os personagens ainda existem e estão vivos
                                 if not myChar or not targetChar or not myChar:FindFirstChild("HumanoidRootPart") or not targetChar:FindFirstChild("HumanoidRootPart") then
@@ -472,11 +472,11 @@ for _, data in ipairs(interactData) do
                                     return
                                 end
 
-                                -- Cria a oscilação do movimento
-                                local moveOffset = math.sin(tick() * 15) * 0.8
+                                -- Cria a oscilação do movimento mais curta (0.4)
+                                local moveOffset = math.sin(tick() * 15) * 0.4
                                 
-                                -- Atualiza constantemente a posição virado para o lado correto (-90)
-                                myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2.0 + moveOffset) * CFrame.Angles(0, math.rad(-90), 0)
+                                -- Atualiza constantemente a posição com distância mais próxima e lado correto (-90)
+                                myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(0, 0, -1.8 + moveOffset) * CFrame.Angles(0, math.rad(-90), 0)
                             end)
                         end
                     end
