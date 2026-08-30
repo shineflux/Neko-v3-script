@@ -476,8 +476,8 @@ for _, data in ipairs(interactData) do
                                 -- Oscilação curta
                                 local moveOffset = math.sin(tick() * 15) * 0.4
                                 
-                                -- Atualiza constantemente a posição com distância mais próxima e lado correto (-90)
-                                myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(0, 0, -1.8 + moveOffset) * CFrame.Angles(0, math.rad(-90), 0)
+                                -- Atualiza constantemente a posição alinhada com as costas do alvo
+                                myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1.5 + moveOffset)
                             end)
                         end
                     end
