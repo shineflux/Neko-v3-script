@@ -480,13 +480,6 @@ for _, data in ipairs(interactData) do
                                 -- Usa as configurações específicas definidas na tabela interactData
                                 local moveOffset = math.sin(tick() * speed) * amplitude
                                 
-                                -- 
-                    currentInteractTrack:Stop()
-                    currentInteractTrack = nil
-                end
--- Usa as configurações específicas definidas na tabela interactData
-                                local moveOffset = math.sin(tick() * speed) * amplitude
-                                
                                 -- Posicionamento usando o BaseZ (quão longe) e moveOffset (o vaivém)
                                 myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(0, 0, baseZ + moveOffset) * CFrame.Angles(0, math.rad(180), 0)
                             end)
