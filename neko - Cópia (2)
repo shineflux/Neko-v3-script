@@ -73,9 +73,12 @@ local emoteData = {
 
 -- Lista de Ações para o menu Interagir
 local interactData = {
-    {Name = "sex1", AnimID = "99414136014979"},
-    {Name = "sex2", AnimID = "81869288445327"},
-    {Name = "Ação 3"},
+    -- sex1: Normal
+    {Name = "sex1", AnimID = "99414136014979", Speed = 15, BaseZ = -1.5, Amplitude = 0.4},
+    -- sex2: Na frente virado pra ele
+    {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseZ = -1.5, Amplitude = 0.4},
+    -- sex3: Mais lento (Speed 8) e indo mais pra frente (BaseZ -1.2, Amplitude 0.6)
+    {Name = "sex3", AnimID = "81869288445327", Speed = 8, BaseZ = -1.2, Amplitude = 0.6},
     {Name = "Ação 4"}
 }
 
@@ -428,7 +431,6 @@ for _, data in ipairs(interactData) do
     btn.TextScaled = true
     
     btn.MouseButton1Click:Connect(function()
-        -- Verifica se o botão tem um AnimID (serve tanto para sex1 quanto para sex2)
         if data.AnimID then
             if player.Backpack:FindFirstChild(data.Name) or (player.Character and player.Character:FindFirstChild(data.Name)) then
                 return
@@ -442,6 +444,11 @@ for _, data in ipairs(interactData) do
             local mouse = player:GetMouse()
             local clickConn
 
+            -- Configurações de velocidade e distância específicas para cada ação
+            local speed = data.Speed or 15
+            local baseZ = data.BaseZ or -1.5
+            local amplitude = data.Amplitude or 0.4
+
             tool.Equipped:Connect(function()
                 clickConn = tool.Activated:Connect(function()
                     local target = mouse.Target
@@ -451,11 +458,9 @@ for _, data in ipairs(interactData) do
                         
                         if myChar and myChar:FindFirstChild("HumanoidRootPart") and targetChar:FindFirstChild("HumanoidRootPart") then
                             
-                            -- Limpa loops e animações anteriores
                             if interactLoop then interactLoop:Disconnect(); interactLoop = nil end
                             if currentInteractTrack then currentInteractTrack:Stop() end
                             
-                            -- Carrega e toca a animação correspondente ao botão pressionado
                             local animator = myChar.Humanoid:FindFirstChild("Animator")
                             if animator then
                                 local anim = Instance.new("Animation")
@@ -465,19 +470,17 @@ for _, data in ipairs(interactData) do
                                 currentInteractTrack:Play()
                             end
 
-                            -- Inicia o Loop de movimento ajustado
                             interactLoop = RunService.Heartbeat:Connect(function()
-                                -- Verifica se ambos os personagens ainda existem e estão vivos
                                 if not myChar or not targetChar or not myChar:FindFirstChild("HumanoidRootPart") or not targetChar:FindFirstChild("HumanoidRootPart") then
                                     if interactLoop then interactLoop:Disconnect(); interactLoop = nil end
                                     return
                                 end
 
-                                -- Oscilação curta
-                                local moveOffset = math.sin(tick() * 15) * 0.4
+                                -- Usa as configurações específicas definidas na tabela interactData
+                                local moveOffset = math.sin(tick() * speed) * amplitude
                                 
-                                -- Atualiza constantemente a posição na frente do alvo e virado para ele (180 graus)
-                                myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(0, 0, -1.5 + moveOffset) * CFrame.Angles(0, math.rad(180), 0)
+                                -- Posicionamento usando o BaseZ (quão perto) e moveOffset (o vaivém)
+                                myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(0, 0, baseZ + moveOffset) * CFrame.Angles(0, math.rad(180), 0)
                             end)
                         end
                     end
