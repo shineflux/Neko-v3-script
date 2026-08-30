@@ -74,12 +74,13 @@ local emoteData = {
 -- Lista de Ações para o menu Interagir
 local interactData = {
     -- sex1: Normal
-    {Name = "sex1", AnimID = "99414136014979", Speed = 15, BaseZ = -1.5, Amplitude = 0.4},
-    -- sex2: Na frente virado pra ele
-    {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseZ = -1.5, Amplitude = 0.4},
-    -- sex3: Mais lento (Speed 8) e indo mais pra frente (BaseZ -1.2, Amplitude 0.6)
-    {Name = "sex3", AnimID = "81869288445327", Speed = 8, BaseZ = -1.2, Amplitude = 0.6},
-    {Name = "Ação 4"}
+    {Name = "sex1", AnimID = "99414136014979", Speed = 15, BaseZ = -2.2, Amplitude = 0.3},
+    -- sex2: Na frente virado pra ele (Afastado o suficiente para não bugar)
+    {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseZ = -2.2, Amplitude = 0.3},
+    -- sex3: Mais lento e encostando certinho sem atravessar
+    {Name = "sex3", AnimID = "81869288445327", Speed = 8, BaseZ = -2.1, Amplitude = 0.25},
+    -- sex4: Bem mais rápido e um pouquinho mais longe
+    {Name = "sex4", AnimID = "81869288445327", Speed = 30, BaseZ = -2.6, Amplitude = 0.4}
 }
 
 -- Create Scrolling List for Emotes
@@ -446,8 +447,8 @@ for _, data in ipairs(interactData) do
 
             -- Configurações de velocidade e distância específicas para cada ação
             local speed = data.Speed or 15
-            local baseZ = data.BaseZ or -1.5
-            local amplitude = data.Amplitude or 0.4
+            local baseZ = data.BaseZ or -2.2
+            local amplitude = data.Amplitude or 0.3
 
             tool.Equipped:Connect(function()
                 clickConn = tool.Activated:Connect(function()
@@ -479,7 +480,14 @@ for _, data in ipairs(interactData) do
                                 -- Usa as configurações específicas definidas na tabela interactData
                                 local moveOffset = math.sin(tick() * speed) * amplitude
                                 
-                                -- Posicionamento usando o BaseZ (quão perto) e moveOffset (o vaivém)
+                                -- 
+                    currentInteractTrack:Stop()
+                    currentInteractTrack = nil
+                end
+-- Usa as configurações específicas definidas na tabela interactData
+                                local moveOffset = math.sin(tick() * speed) * amplitude
+                                
+                                -- Posicionamento usando o BaseZ (quão longe) e moveOffset (o vaivém)
                                 myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(0, 0, baseZ + moveOffset) * CFrame.Angles(0, math.rad(180), 0)
                             end)
                         end
