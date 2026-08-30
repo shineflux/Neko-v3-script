@@ -71,15 +71,11 @@ local emoteData = {
     {Name = "Feign Hurt", ID = "103426546772784"}
 }
 
--- Lista de Ações para o menu Interagir (sex1 ajustado para ficar de lado e bem chamativo)
+-- Lista de Ações para o menu Interagir (sex1 invertido, mais longe e com vai-vem bem visível)
 local interactData = {
-    -- sex1: De lado (90 graus), mais afastado (BaseZ e BaseX) e com vaivém beeeem visível
-    {Name = "sex1", AnimID = "99414136014979", Speed = 18, BaseX = -1.2, BaseZ = -1.8, Amplitude = 0.7, Rotation = 90},
-    -- sex2: Na frente virado pra ele (Afastado o suficiente para não bugar)
+    {Name = "sex1", AnimID = "99414136014979", Speed = 16, BaseX = 1.5, BaseZ = -2.8, Amplitude = 1.2, Rotation = 270},
     {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseX = 0, BaseZ = -2.2, Amplitude = 0.3, Rotation = 180},
-    -- sex3: Mais lento e encostando certinho sem atravessar
     {Name = "sex3", AnimID = "81869288445327", Speed = 8, BaseX = 0, BaseZ = -2.1, Amplitude = 0.25, Rotation = 180},
-    -- sex4: Bem mais rápido e um pouquinho mais longe
     {Name = "sex4", AnimID = "81869288445327", Speed = 30, BaseX = 0, BaseZ = -2.6, Amplitude = 0.4, Rotation = 180}
 }
 
@@ -479,10 +475,10 @@ for _, data in ipairs(interactData) do
                                     return
                                 end
 
-                                -- Movimento de vaivém
+                                -- Movimento de vaivém bem amplo e visível
                                 local moveOffset = math.sin(tick() * speed) * amplitude
                                 
-                                -- Posicionamento customizado para lateral ou frente
+                                -- Posicionamento customizado
                                 myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(baseX, 0, baseZ + moveOffset) * CFrame.Angles(0, math.rad(rotAngle), 0)
                             end)
                         end
@@ -540,4 +536,4 @@ end)
 
 player.CharacterAdded:Connect(function(c)
     if isCustomAnimActive then task.wait(0.5); applyCustomAnimation(c) end
-end)
+end)  
