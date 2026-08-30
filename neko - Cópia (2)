@@ -71,12 +71,12 @@ local emoteData = {
     {Name = "Feign Hurt", ID = "103426546772784"}
 }
 
--- Lista de Ações com rotações ajustadas (sex1-4 de lado / sex5-7 corrigidos)
+-- Lista de Ações com sex1 de lado (270) e sex2-4 escorados corretamente
 local interactData = {
-    {Name = "sex1", AnimID = "99414136014979", Speed = 16, BaseX = 0,   BaseZ = -2.2, Amplitude = 0.8, Rotation = 90},
-    {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseX = 0,   BaseZ = -2.2, Amplitude = 0.8, Rotation = 90},
-    {Name = "sex3", AnimID = "81869288445327", Speed = 8,  BaseX = 0,   BaseZ = -2.2, Amplitude = 0.7, Rotation = 90},
-    {Name = "sex4", AnimID = "81869288445327", Speed = 30, BaseX = 0,   BaseZ = -2.2, Amplitude = 0.9, Rotation = 90},
+    {Name = "sex1", AnimID = "99414136014979", Speed = 16, BaseX = 0,   BaseZ = -1.3, Amplitude = 0.5, Rotation = 270},
+    {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseX = 0,   BaseZ = -1.3, Amplitude = 0.5, Rotation = 0},
+    {Name = "sex3", AnimID = "81869288445327", Speed = 8,  BaseX = 0,   BaseZ = -1.3, Amplitude = 0.4, Rotation = 0},
+    {Name = "sex4", AnimID = "81869288445327", Speed = 30, BaseX = 0,   BaseZ = -1.3, Amplitude = 0.6, Rotation = 0},
     {Name = "sex5", AnimID = "88801590986184", Speed = 15, BaseX = 0,   BaseZ = -1.8, Amplitude = 0.8, Rotation = 0},
     {Name = "sex6", AnimID = "88801590986184", Speed = 7,  BaseX = 0,   BaseZ = -1.8, Amplitude = 0.7, Rotation = 0},
     {Name = "sex7", AnimID = "88801590986184", Speed = 35, BaseX = 0,   BaseZ = -1.9, Amplitude = 0.9, Rotation = 0}
@@ -447,8 +447,8 @@ for _, data in ipairs(interactData) do
             -- Configurações específicas de cada ação
             local speed = data.Speed or 15
             local baseX = data.BaseX or 0
-            local baseZ = data.BaseZ or -1.8
-            local amplitude = data.Amplitude or 0.8
+            local baseZ = data.BaseZ or -1.3
+            local amplitude = data.Amplitude or 0.5
             local rotAngle = data.Rotation or 0
 
             tool.Equipped:Connect(function()
@@ -478,10 +478,10 @@ for _, data in ipairs(interactData) do
                                     return
                                 end
 
-                                -- Movimento de vaivém
+                                -- Movimento de vaivém suave
                                 local moveOffset = math.sin(tick() * speed) * amplitude
                                 
-                                -- Posicionamento dinâmico ajustado
+                                -- Posicionamento escorado e sem entrar no player
                                 myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(baseX, 0, baseZ + moveOffset) * CFrame.Angles(0, math.rad(rotAngle), 0)
                             end)
                         end
