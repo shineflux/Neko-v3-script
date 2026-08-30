@@ -71,7 +71,7 @@ local emoteData = {
     {Name = "Feign Hurt", ID = "103426546772784"}
 }
 
--- Lista de Ações corrigida: Des1 invertido e do sex2 ao sex7 com mais alcance para frente e visibilidade
+-- Lista de Ações (com a direção certa e movimentos mais amplos para frente)
 local interactData = {
     {Name = "sex1", AnimID = "99414136014979", Speed = 16, BaseX = 1.5, BaseZ = -2.8, Amplitude = 1.2, Rotation = 270},
     {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseX = 0, BaseZ = -1.8, Amplitude = 0.8, Rotation = 0},
@@ -445,11 +445,11 @@ for _, data in ipairs(interactData) do
             local clickConn
 
             -- Configurações específicas de cada ação
-            local speed = data.Speed || 15
-            local baseX = data.BaseX || 0
-            local baseZ = data.BaseZ || -1.8
-            local amplitude = data.Amplitude || 0.8
-            local rotAngle = data.Rotation || 0
+            local speed = data.Speed or 15
+            local baseX = data.BaseX or 0
+            local baseZ = data.BaseZ or -1.8
+            local amplitude = data.Amplitude or 0.8
+            local rotAngle = data.Rotation or 0
 
             tool.Equipped:Connect(function()
                 clickConn = tool.Activated:Connect(function()
@@ -539,4 +539,4 @@ end)
 
 player.CharacterAdded:Connect(function(c)
     if isCustomAnimActive then task.wait(0.5); applyCustomAnimation(c) end
-end)   
+end)
