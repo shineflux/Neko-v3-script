@@ -74,7 +74,7 @@ local emoteData = {
 -- Lista de Ações para o menu Interagir
 local interactData = {
     {Name = "sex1", AnimID = "99414136014979"},
-    {Name = "Ação 2"},
+    {Name = "sex2", AnimID = "81869288445327"},
     {Name = "Ação 3"},
     {Name = "Ação 4"}
 }
@@ -428,13 +428,14 @@ for _, data in ipairs(interactData) do
     btn.TextScaled = true
     
     btn.MouseButton1Click:Connect(function()
-        if data.Name == "sex1" then
-            if player.Backpack:FindFirstChild("sex1") or (player.Character and player.Character:FindFirstChild("sex1")) then
+        -- Verifica se o botão tem um AnimID (serve tanto para sex1 quanto para sex2)
+        if data.AnimID then
+            if player.Backpack:FindFirstChild(data.Name) or (player.Character and player.Character:FindFirstChild(data.Name)) then
                 return
             end
 
             local tool = Instance.new("Tool")
-            tool.Name = "sex1"
+            tool.Name = data.Name
             tool.RequiresHandle = false
             tool.Parent = player.Backpack
 
@@ -454,7 +455,7 @@ for _, data in ipairs(interactData) do
                             if interactLoop then interactLoop:Disconnect(); interactLoop = nil end
                             if currentInteractTrack then currentInteractTrack:Stop() end
                             
-                            -- Carrega e toca a animação
+                            -- Carrega e toca a animação correspondente ao botão pressionado
                             local animator = myChar.Humanoid:FindFirstChild("Animator")
                             if animator then
                                 local anim = Instance.new("Animation")
@@ -464,7 +465,7 @@ for _, data in ipairs(interactData) do
                                 currentInteractTrack:Play()
                             end
 
-                            -- Inicia o Loop de movimento ajustado (distância de vai e volta menor: 0.4 em vez de 0.8)
+                            -- Inicia o Loop de movimento ajustado
                             interactLoop = RunService.Heartbeat:Connect(function()
                                 -- Verifica se ambos os personagens ainda existem e estão vivos
                                 if not myChar or not targetChar or not myChar:FindFirstChild("HumanoidRootPart") or not targetChar:FindFirstChild("HumanoidRootPart") then
@@ -472,7 +473,7 @@ for _, data in ipairs(interactData) do
                                     return
                                 end
 
-                                -- Cria a oscilação do movimento mais curta (0.4)
+                                -- Oscilação curta
                                 local moveOffset = math.sin(tick() * 15) * 0.4
                                 
                                 -- Atualiza constantemente a posição com distância mais próxima e lado correto (-90)
