@@ -71,15 +71,15 @@ local emoteData = {
     {Name = "Feign Hurt", ID = "103426546772784"}
 }
 
--- Lista de Ações para o menu Interagir (Com sex5, sex6 e sex7 adicionados)
+-- Lista de Ações corrigida: Des1 invertido e do sex2 ao sex7 com mais alcance para frente e visibilidade
 local interactData = {
     {Name = "sex1", AnimID = "99414136014979", Speed = 16, BaseX = 1.5, BaseZ = -2.8, Amplitude = 1.2, Rotation = 270},
-    {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseX = 0, BaseZ = -2.2, Amplitude = 0.3, Rotation = 180},
-    {Name = "sex3", AnimID = "81869288445327", Speed = 8, BaseX = 0, BaseZ = -2.1, Amplitude = 0.25, Rotation = 180},
-    {Name = "sex4", AnimID = "81869288445327", Speed = 30, BaseX = 0, BaseZ = -2.6, Amplitude = 0.4, Rotation = 180},
-    {Name = "sex5", AnimID = "88801590986184", Speed = 15, BaseX = 0, BaseZ = -2.2, Amplitude = 0.3, Rotation = 180}, -- Velocidade normal
-    {Name = "sex6", AnimID = "88801590986184", Speed = 7,  BaseX = 0, BaseZ = -2.2, Amplitude = 0.25, Rotation = 180}, -- Velocidade mais lenta (demorada)
-    {Name = "sex7", AnimID = "88801590986184", Speed = 35, BaseX = 0, BaseZ = -2.4, Amplitude = 0.4, Rotation = 180}  -- Velocidade mais rápida
+    {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseX = 0, BaseZ = -1.8, Amplitude = 0.8, Rotation = 0},
+    {Name = "sex3", AnimID = "81869288445327", Speed = 8,  BaseX = 0, BaseZ = -1.8, Amplitude = 0.7, Rotation = 0},
+    {Name = "sex4", AnimID = "81869288445327", Speed = 30, BaseX = 0, BaseZ = -1.9, Amplitude = 0.9, Rotation = 0},
+    {Name = "sex5", AnimID = "88801590986184", Speed = 15, BaseX = 0, BaseZ = -1.8, Amplitude = 0.8, Rotation = 0},
+    {Name = "sex6", AnimID = "88801590986184", Speed = 7,  BaseX = 0, BaseZ = -1.8, Amplitude = 0.7, Rotation = 0},
+    {Name = "sex7", AnimID = "88801590986184", Speed = 35, BaseX = 0, BaseZ = -1.9, Amplitude = 0.9, Rotation = 0}
 }
 
 -- Create Scrolling List for Emotes
@@ -445,11 +445,11 @@ for _, data in ipairs(interactData) do
             local clickConn
 
             -- Configurações específicas de cada ação
-            local speed = data.Speed or 15
-            local baseX = data.BaseX or 0
-            local baseZ = data.BaseZ or -2.2
-            local amplitude = data.Amplitude or 0.3
-            local rotAngle = data.Rotation or 180
+            local speed = data.Speed || 15
+            local baseX = data.BaseX || 0
+            local baseZ = data.BaseZ || -1.8
+            local amplitude = data.Amplitude || 0.8
+            local rotAngle = data.Rotation || 0
 
             tool.Equipped:Connect(function()
                 clickConn = tool.Activated:Connect(function()
@@ -478,10 +478,10 @@ for _, data in ipairs(interactData) do
                                     return
                                 end
 
-                                -- Movimento de vaivém
+                                -- Movimento de vaivém bem amplo para frente
                                 local moveOffset = math.sin(tick() * speed) * amplitude
                                 
-                                -- Posicionamento customizado
+                                 -- Posicionamento corrigido (virado para a frente e com bastante alcance)
                                 myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(baseX, 0, baseZ + moveOffset) * CFrame.Angles(0, math.rad(rotAngle), 0)
                             end)
                         end
@@ -539,4 +539,4 @@ end)
 
 player.CharacterAdded:Connect(function(c)
     if isCustomAnimActive then task.wait(0.5); applyCustomAnimation(c) end
-end)    
+end)   
