@@ -71,12 +71,12 @@ local emoteData = {
     {Name = "Feign Hurt", ID = "103426546772784"}
 }
 
--- sex2, sex3 e sex4 corrigidos com Rotation = 0 e espaçamento ajustado
+-- sex1, sex2, sex3 e sex4 ajustados na frente com BaseZ = -2.0 e Rotation = 180 para não atravessar
 local interactData = {
-    {Name = "sex1", AnimID = "99414136014979", Speed = 16, BaseX = 0,   BaseZ = -1.3, Amplitude = 0.5, Rotation = 270},
-    {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseX = 0,   BaseZ = -1.3, Amplitude = 0.5, Rotation = 0},
-    {Name = "sex3", AnimID = "81869288445327", Speed = 8,  BaseX = 0,   BaseZ = -1.3, Amplitude = 0.4, Rotation = 0},
-    {Name = "sex4", AnimID = "81869288445327", Speed = 30, BaseX = 0,   BaseZ = -1.3, Amplitude = 0.6, Rotation = 0},
+    {Name = "sex1", AnimID = "99414136014979", Speed = 16, BaseX = 0,   BaseZ = -2.0, Amplitude = 0.5, Rotation = 180},
+    {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseX = 0,   BaseZ = -2.0, Amplitude = 0.5, Rotation = 180},
+    {Name = "sex3", AnimID = "81869288445327", Speed = 8,  BaseX = 0,   BaseZ = -2.0, Amplitude = 0.4, Rotation = 180},
+    {Name = "sex4", AnimID = "81869288445327", Speed = 30, BaseX = 0,   BaseZ = -2.0, Amplitude = 0.6, Rotation = 180},
     {Name = "sex5", AnimID = "88801590986184", Speed = 15, BaseX = 0,   BaseZ = -1.8, Amplitude = 0.8, Rotation = 0},
     {Name = "sex6", AnimID = "88801590986184", Speed = 7,  BaseX = 0,   BaseZ = -1.8, Amplitude = 0.7, Rotation = 0},
     {Name = "sex7", AnimID = "88801590986184", Speed = 35, BaseX = 0,   BaseZ = -1.9, Amplitude = 0.9, Rotation = 0}
@@ -447,7 +447,7 @@ for _, data in ipairs(interactData) do
             -- Configurações específicas de cada ação
             local speed = data.Speed or 15
             local baseX = data.BaseX or 0
-            local baseZ = data.BaseZ or -1.3
+            local baseZ = data.BaseZ or -2.0
             local amplitude = data.Amplitude or 0.5
             local rotAngle = data.Rotation or 0
 
@@ -481,7 +481,7 @@ for _, data in ipairs(interactData) do
                                 -- Movimento de vaivém suave
                                 local moveOffset = math.sin(tick() * speed) * amplitude
                                 
-                                -- Posicionamento corrigido para o sex2, 3 e 4
+                                -- Posicionamento na frente sem atravessar
                                 myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(baseX, 0, baseZ + moveOffset) * CFrame.Angles(0, math.rad(rotAngle), 0)
                             end)
                         end
