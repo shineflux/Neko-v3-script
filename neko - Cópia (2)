@@ -71,11 +71,11 @@ local emoteData = {
     {Name = "Feign Hurt", ID = "103426546772784"}
 }
 
--- Lista de Ações (com a direção certa e movimentos mais amplos para frente)
+-- Lista de Ações com sex1, sex2 e sex3 corrigidos na direção certa
 local interactData = {
-    {Name = "sex1", AnimID = "99414136014979", Speed = 16, BaseX = 1.5, BaseZ = -2.8, Amplitude = 1.2, Rotation = 270},
-    {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseX = 0, BaseZ = -1.8, Amplitude = 0.8, Rotation = 0},
-    {Name = "sex3", AnimID = "81869288445327", Speed = 8,  BaseX = 0, BaseZ = -1.8, Amplitude = 0.7, Rotation = 0},
+    {Name = "sex1", AnimID = "99414136014979", Speed = 16, BaseX = 1.5, BaseZ = -2.8, Amplitude = 1.2, Rotation = 90},
+    {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseX = 0, BaseZ = 1.8,  Amplitude = 0.8, Rotation = 180},
+    {Name = "sex3", AnimID = "81869288445327", Speed = 8,  BaseX = 0, BaseZ = 1.8,  Amplitude = 0.7, Rotation = 180},
     {Name = "sex4", AnimID = "81869288445327", Speed = 30, BaseX = 0, BaseZ = -1.9, Amplitude = 0.9, Rotation = 0},
     {Name = "sex5", AnimID = "88801590986184", Speed = 15, BaseX = 0, BaseZ = -1.8, Amplitude = 0.8, Rotation = 0},
     {Name = "sex6", AnimID = "88801590986184", Speed = 7,  BaseX = 0, BaseZ = -1.8, Amplitude = 0.7, Rotation = 0},
@@ -478,10 +478,10 @@ for _, data in ipairs(interactData) do
                                     return
                                 end
 
-                                -- Movimento de vaivém bem amplo para frente
+                                -- Movimento de vaivém
                                 local moveOffset = math.sin(tick() * speed) * amplitude
                                 
-                                 -- Posicionamento corrigido (virado para a frente e com bastante alcance)
+                                 -- Posicionamento dinâmico por ação
                                 myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(baseX, 0, baseZ + moveOffset) * CFrame.Angles(0, math.rad(rotAngle), 0)
                             end)
                         end
