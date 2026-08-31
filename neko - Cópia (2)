@@ -71,9 +71,9 @@ local emoteData = {
     {Name = "Feign Hurt", ID = "103426546772784"}
 }
 
--- sex1 ajustado de lado, sex2-4 na frente
+-- sex1 corrigido (afastado e desvirado), o resto mantido igual
 local interactData = {
-    {Name = "sex1", AnimID = "99414136014979", Speed = 16, BaseX = 1.2, BaseZ = -1.0, Amplitude = 0.5, Rotation = 90},
+    {Name = "sex1", AnimID = "99414136014979", Speed = 16, BaseX = 2.0, BaseZ = -1.0, Amplitude = 0.5, Rotation = 270},
     {Name = "sex2", AnimID = "81869288445327", Speed = 15, BaseX = 0,   BaseZ = -2.0, Amplitude = 0.5, Rotation = 180},
     {Name = "sex3", AnimID = "81869288445327", Speed = 8,  BaseX = 0,   BaseZ = -2.0, Amplitude = 0.4, Rotation = 180},
     {Name = "sex4", AnimID = "81869288445327", Speed = 30, BaseX = 0,   BaseZ = -2.0, Amplitude = 0.6, Rotation = 180},
@@ -481,7 +481,7 @@ for _, data in ipairs(interactData) do
                                 -- Movimento de vaivém suave
                                 local moveOffset = math.sin(tick() * speed) * amplitude
                                 
-                                -- Posicionamento adaptado (sex1 de lado, os outros na frente)
+                                -- Posicionamento adaptado
                                 myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(baseX, 0, baseZ + moveOffset) * CFrame.Angles(0, math.rad(rotAngle), 0)
                             end)
                         end
