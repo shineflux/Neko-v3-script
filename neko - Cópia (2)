@@ -13,7 +13,7 @@ player:WaitForChild("PlayerGui")
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = player.PlayerGui
 screenGui.ResetOnSpawn = false
-screenGui.Name = "GuiVersion22"
+screenGui.Name = "GuiVersion24"
 
 -- Create Main Frame
 local frame = Instance.new("Frame")
@@ -42,7 +42,7 @@ interactFrame.Position = UDim2.new(1, 5, 0, -30)
 interactFrame.Visible = false
 interactFrame.BorderSizePixel = 2
 
--- Emote List (25 Emotes)
+-- Emote List
 local emoteData = {
     {Name = "Scratching", ID = "93910188107955"},
     {Name = "Sit", ID = "110757655806288"},
@@ -68,18 +68,31 @@ local emoteData = {
     {Name = "Grooming", ID = "117809429848082"},
     {Name = "Kicking Feet", ID = "103155280474275"},
     {Name = "Cat Pose", ID = "79458008243992"},
-    {Name = "Feign Hurt", ID = "103426546772784"}
+    {Name = "Feign Hurt", ID = "103426546772784"},
+    {Name = "sentada 2", ID = "90220217532704"},
+    {Name = "sentada 1", ID = "139670601642726"},
+    {Name = "sentada", ID = "130884274197620"},
+    {Name = "peluda", ID = "121910449406737"},
+    {Name = "calda", ID = "96663418039957"},
+    {Name = "beijo", ID = "83687537273489"},
+    {Name = "fofo", ID = "118133473903220"},
+    {Name = "brincalhão", ID = "87759528917829"},
+    {Name = "descanso", ID = "134363380063274"},
+    {Name = "assento", ID = "96453728600677"},
+    {Name = "disposto", ID = "84981361581292"},
+    {Name = "coitado", ID = "77129785092838"},
+    {Name = "abandonado", ID = "122188854467532"}
 }
 
--- Tabela de interações ajustada com os novos alinhamentos
+-- Tabela de interações com sex5, sex6 e sex7 corrigidas
 local interactData = {
     {Name = "sex1",  AnimID = "99414136014979",  Speed = 16, BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.5, Rotation = 270},
     {Name = "sex2",  AnimID = "81869288445327",  Speed = 15, BaseX = 0,   BaseZ = -2.0, Amplitude = 0.5, Rotation = 180},
     {Name = "sex3",  AnimID = "81869288445327",  Speed = 8,  BaseX = 0,   BaseZ = -2.0, Amplitude = 0.4, Rotation = 180},
     {Name = "sex4",  AnimID = "81869288445327",  Speed = 30, BaseX = 0,   BaseZ = -2.0, Amplitude = 0.6, Rotation = 180},
-    {Name = "sex5",  AnimID = "88801590986184",  Speed = 15, BaseX = 0,   BaseZ = -1.8, Amplitude = 0.8, Rotation = 0},
-    {Name = "sex6",  AnimID = "88801590986184",  Speed = 7,  BaseX = 0,   BaseZ = -1.8, Amplitude = 0.7, Rotation = 0},
-    {Name = "sex7",  AnimID = "88801590986184",  Speed = 35, BaseX = 0,   BaseZ = -1.9, Amplitude = 0.9, Rotation = 0},
+    {Name = "sex5",  AnimID = "81869288445327",  Speed = 15, BaseX = 0,   BaseZ = -1.8, Amplitude = 0.8, Rotation = 0},
+    {Name = "sex6",  AnimID = "81869288445327",  Speed = 7,  BaseX = 0,   BaseZ = -1.8, Amplitude = 0.7, Rotation = 0},
+    {Name = "sex7",  AnimID = "81869288445327",  Speed = 35, BaseX = 0,   BaseZ = -1.9, Amplitude = 0.9, Rotation = 0},
     {Name = "sex8",  AnimID = "137746067965316", Speed = 16, BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.5, Rotation = 270},
     {Name = "sex9",  AnimID = "137746067965316", Speed = 6,  BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.3, Rotation = 270},
     {Name = "sex10", AnimID = "137746067965316", Speed = 35, BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.7, Rotation = 270},
