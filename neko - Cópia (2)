@@ -71,19 +71,19 @@ local emoteData = {
     {Name = "Feign Hurt", ID = "103426546772784"}
 }
 
--- Tabela de interações atualizada até o sex11
+-- Tabela de interações ajustada com os novos alinhamentos
 local interactData = {
-    {Name = "sex1",  AnimID = "99414136014979",  Speed = 16, BaseX = 2.0, BaseZ = -1.0, Amplitude = 0.5, Rotation = 270},
+    {Name = "sex1",  AnimID = "99414136014979",  Speed = 16, BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.5, Rotation = 270},
     {Name = "sex2",  AnimID = "81869288445327",  Speed = 15, BaseX = 0,   BaseZ = -2.0, Amplitude = 0.5, Rotation = 180},
     {Name = "sex3",  AnimID = "81869288445327",  Speed = 8,  BaseX = 0,   BaseZ = -2.0, Amplitude = 0.4, Rotation = 180},
     {Name = "sex4",  AnimID = "81869288445327",  Speed = 30, BaseX = 0,   BaseZ = -2.0, Amplitude = 0.6, Rotation = 180},
     {Name = "sex5",  AnimID = "88801590986184",  Speed = 15, BaseX = 0,   BaseZ = -1.8, Amplitude = 0.8, Rotation = 0},
     {Name = "sex6",  AnimID = "88801590986184",  Speed = 7,  BaseX = 0,   BaseZ = -1.8, Amplitude = 0.7, Rotation = 0},
     {Name = "sex7",  AnimID = "88801590986184",  Speed = 35, BaseX = 0,   BaseZ = -1.9, Amplitude = 0.9, Rotation = 0},
-    {Name = "sex8",  AnimID = "137746067965316", Speed = 16, BaseX = 2.0, BaseZ = -1.0, Amplitude = 0.5, Rotation = 270}, -- Normal (Estilo sex1)
-    {Name = "sex9",  AnimID = "137746067965316", Speed = 6,  BaseX = 2.0, BaseZ = -1.0, Amplitude = 0.3, Rotation = 270}, -- Lento / Devagar
-    {Name = "sex10", AnimID = "137746067965316", Speed = 35, BaseX = 2.0, BaseZ = -1.0, Amplitude = 0.7, Rotation = 270}, -- Rápido
-    {Name = "sex11", AnimID = "73828975501908",  Speed = 0,  BaseX = 0,   BaseZ = -2.0, Amplitude = 0,   Rotation = 180}  -- Na frente, sem movimento
+    {Name = "sex8",  AnimID = "137746067965316", Speed = 16, BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.5, Rotation = 270},
+    {Name = "sex9",  AnimID = "137746067965316", Speed = 6,  BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.3, Rotation = 270},
+    {Name = "sex10", AnimID = "137746067965316", Speed = 35, BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.7, Rotation = 270},
+    {Name = "sex11", AnimID = "73828975501908",  Speed = 0,  BaseX = 0,   BaseZ = -3.0, Amplitude = 0,   Rotation = 180}
 }
 
 -- Create Scrolling List for Emotes
