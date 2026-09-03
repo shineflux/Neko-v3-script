@@ -13,7 +13,7 @@ player:WaitForChild("PlayerGui")
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = player.PlayerGui
 screenGui.ResetOnSpawn = false
-screenGui.Name = "GuiVersion25"
+screenGui.Name = "GuiVersion26"
 
 -- Create Main Frame
 local frame = Instance.new("Frame")
@@ -42,7 +42,7 @@ interactFrame.Position = UDim2.new(1, 5, 0, -30)
 interactFrame.Visible = false
 interactFrame.BorderSizePixel = 2
 
--- Emote List (Atualizada com as novas animações)
+-- Emote List
 local emoteData = {
     {Name = "Scratching", ID = "93910188107955"},
     {Name = "Sit", ID = "110757655806288"},
@@ -99,19 +99,19 @@ local emoteData = {
     {Name = "timido 2", ID = "114526736727711"}
 }
 
--- Tabela de interações com sex5, sex6 e sex7 invertidos para corrigir a direção (Rotation = 180)
+-- Tabela de interações com todos os 'sex' bem encostados (BaseZ = -1.1)
 local interactData = {
-    {Name = "sex1",  AnimID = "99414136014979",  Speed = 16, BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.5, Rotation = 270},
-    {Name = "sex2",  AnimID = "81869288445327",  Speed = 15, BaseX = 0,   BaseZ = -2.0, Amplitude = 0.5, Rotation = 180},
-    {Name = "sex3",  AnimID = "81869288445327",  Speed = 8,  BaseX = 0,   BaseZ = -2.0, Amplitude = 0.4, Rotation = 180},
-    {Name = "sex4",  AnimID = "81869288445327",  Speed = 30, BaseX = 0,   BaseZ = -2.0, Amplitude = 0.6, Rotation = 180},
-    {Name = "sex5",  AnimID = "81869288445327",  Speed = 15, BaseX = 0,   BaseZ = -1.8, Amplitude = 0.8, Rotation = 180},
-    {Name = "sex6",  AnimID = "81869288445327",  Speed = 7,  BaseX = 0,   BaseZ = -1.8, Amplitude = 0.7, Rotation = 180},
-    {Name = "sex7",  AnimID = "81869288445327",  Speed = 35, BaseX = 0,   BaseZ = -1.9, Amplitude = 0.9, Rotation = 180},
-    {Name = "sex8",  AnimID = "137746067965316", Speed = 16, BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.5, Rotation = 270},
-    {Name = "sex9",  AnimID = "137746067965316", Speed = 6,  BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.3, Rotation = 270},
-    {Name = "sex10", AnimID = "137746067965316", Speed = 35, BaseX = 1.0, BaseZ = -1.0, Amplitude = 0.7, Rotation = 270},
-    {Name = "sex11", AnimID = "73828975501908",  Speed = 0,  BaseX = 0,   BaseZ = -3.0, Amplitude = 0,   Rotation = 180}
+    {Name = "sex1",  AnimID = "99414136014979",  Speed = 16, BaseX = 0, BaseZ = -1.1, Amplitude = 0.2, Rotation = 270},
+    {Name = "sex2",  AnimID = "81869288445327",  Speed = 15, BaseX = 0, BaseZ = -1.1, Amplitude = 0.2, Rotation = 180},
+    {Name = "sex3",  AnimID = "81869288445327",  Speed = 8,  BaseX = 0, BaseZ = -1.1, Amplitude = 0.2, Rotation = 180},
+    {Name = "sex4",  AnimID = "81869288445327",  Speed = 30, BaseX = 0, BaseZ = -1.1, Amplitude = 0.2, Rotation = 180},
+    {Name = "sex5",  AnimID = "81869288445327",  Speed = 15, BaseX = 0, BaseZ = -1.1, Amplitude = 0.2, Rotation = 180},
+    {Name = "sex6",  AnimID = "81869288445327",  Speed = 7,  BaseX = 0, BaseZ = -1.1, Amplitude = 0.2, Rotation = 180},
+    {Name = "sex7",  AnimID = "81869288445327",  Speed = 35, BaseX = 0, BaseZ = -1.1, Amplitude = 0.2, Rotation = 180},
+    {Name = "sex8",  AnimID = "137746067965316", Speed = 16, BaseX = 0, BaseZ = -1.1, Amplitude = 0.2, Rotation = 270},
+    {Name = "sex9",  AnimID = "137746067965316", Speed = 6,  BaseX = 0, BaseZ = -1.1, Amplitude = 0.2, Rotation = 270},
+    {Name = "sex10", AnimID = "137746067965316", Speed = 35, BaseX = 0, BaseZ = -1.1, Amplitude = 0.2, Rotation = 270},
+    {Name = "sex11", AnimID = "73828975501908",  Speed = 0,  BaseX = 0, BaseZ = -1.1, Amplitude = 0,   Rotation = 180}
 }
 
 -- Create Scrolling List for Emotes
@@ -479,8 +479,8 @@ for _, data in ipairs(interactData) do
             -- Configurações específicas de cada ação
             local speed = data.Speed or 15
             local baseX = data.BaseX or 0
-            local baseZ = data.BaseZ or -2.0
-            local amplitude = data.Amplitude or 0.5
+            local baseZ = data.BaseZ or -1.1
+            local amplitude = data.Amplitude or 0.2
             local rotAngle = data.Rotation or 0
 
             tool.Equipped:Connect(function()
@@ -510,10 +510,10 @@ for _, data in ipairs(interactData) do
                                     return
                                 end
 
-                                -- Movimento de vaivém suave (ou fixo se amplitude for 0)
+                                -- Movimento leve e encostado
                                 local moveOffset = (amplitude > 0) and (math.sin(tick() * speed) * amplitude) or 0
                                 
-                                -- Posicionamento adaptado
+                                -- Posicionamento adaptado bem colado
                                 myChar.HumanoidRootPart.CFrame = targetChar.HumanoidRootPart.CFrame * CFrame.new(baseX, 0, baseZ + moveOffset) * CFrame.Angles(0, math.rad(rotAngle), 0)
                             end)
                         end
